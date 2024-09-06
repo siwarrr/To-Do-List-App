@@ -1,0 +1,36 @@
+<div class="todo-container">
+    <h1>To Do List</h1>
+    <!-- Afficher la citation du jour -->
+    <p class="daily-quote">"{{ dailyQuote }}"</p>
+    <div class="date-container">
+      <label for="date">
+        <h3>Date:</h3>
+      </label>
+      <input type="date" id="date" [(ngModel)]="currentDate" (change)="updateTask()">
+    </div>
+    <div class="todo-list">
+      <h2>Tasks</h2>
+      <ul>
+        <li *ngFor="let task of tasks; let i = index">
+          <input type="checkbox" [(ngModel)]="task.completed" (change)="updateTask()">
+          <!-- Champ de saisie pour le contenu de la tâche avec style conditionnel -->
+          <input 
+            type="text" 
+            [(ngModel)]="task.title" 
+            placeholder="Entrez la tâche ici" 
+            (input)="updateTask()"
+            [class.completed]="task.completed" 
+          />
+          <!-- Icône "+" pour ajouter une nouvelle tâche -->
+          <span nz-icon nzType="plus" nzTheme="outline" class="add-task-icon" (click)="addTask()">+</span>
+        </li>
+      </ul>
+    </div>
+    <div class="notes">
+      <label for="notes">
+        <h3>Notes</h3>
+      </label>
+      <textarea id="notes" rows="4" [(ngModel)]="notes" (input)="updateTask()"></textarea>
+    </div>
+    </div>
+  
